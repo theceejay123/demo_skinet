@@ -1,8 +1,9 @@
-using infrastructure.Data;
+using Core.Interfaces;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-namespace api
+namespace Api
 {
     public class Startup
     {
@@ -17,6 +18,7 @@ namespace api
         {
 
             services.AddControllers();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
 
             services.AddSwaggerGen(c =>
