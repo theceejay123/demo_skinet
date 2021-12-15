@@ -1,9 +1,9 @@
-using Core.Interfaces;
-using Infrastructure.Data;
+using core.Interfaces;
+using infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-namespace Api
+namespace api
 {
     public class Startup
     {

@@ -1,10 +1,10 @@
-using Core.Entities;
-using Core.Interfaces;
-using Infrastructure.Data;
+using core.Entities;
+using core.Interfaces;
+using infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api.Controllers
+namespace api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

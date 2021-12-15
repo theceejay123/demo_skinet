@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Infrastructure.Data;
+using infrastructure.Data;
 
 #nullable disable
 
-namespace Infrastructure.Data.Migrations
+namespace infrastructure.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
     [Migration("20211213005533_InitialCreate")]
