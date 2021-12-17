@@ -1,3 +1,4 @@
+using api.Helpers;
 using core.Interfaces;
 using infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,9 @@ namespace api
         {
 
             services.AddControllers();
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
 
             services.AddSwaggerGen(c =>
@@ -40,6 +43,8 @@ namespace api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
