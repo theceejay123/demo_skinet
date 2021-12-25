@@ -1,0 +1,6 @@
+<header>
+  <span *ngIf="totalPageCount && totalPageCount !== 0"
+    >Showing <strong>{{ getCurrentPageResults() }}</strong> of <strong>{{ totalPageCount }}</strong> Results</span
+  >
+  <span *ngIf="totalPageCount === 0">No results found for this filter</span>
+</header>
