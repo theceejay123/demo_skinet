@@ -89,6 +89,11 @@ public class AccountController : BaseController
     [HttpPost("register")]
     public async Task<ActionResult<AppUserDTO>> Register(AppUserRegisterDTO appUserRegisterDto)
     {
+        if (CheckEmailExistAsync(appUserRegisterDto.Email).Result.Value)
+        {
+            return new BadRequestObjectResult(new ApiValidation{Errors = new []{"Email address is in use"}});
+        }
+        
         AppUser user = new AppUser
         {
             DisplayName = appUserRegisterDto.DisplayName,

@@ -1,3 +1,5 @@
+using api.DTOs;
+using AutoMapper;
 using core.Entities;
 using core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -7,10 +9,12 @@ namespace api.Controllers
     public class BasketController : BaseController
     {
         private readonly IBasketRepository _basketRepo;
+        private readonly IMapper _mapper;
 
-        public BasketController(IBasketRepository basketRepo)
+        public BasketController(IBasketRepository basketRepo, IMapper mapper)
         {
             _basketRepo = basketRepo;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -21,9 +25,10 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Basket>> UpdateBasket(Basket basket)
+        public async Task<ActionResult<Basket>> UpdateBasket(BasketDTO basket)
         {
-            var basketResponse = await _basketRepo.UpdateBasketAsync(basket);
+            var custBasket = _mapper.Map<BasketDTO, Basket>(basket);
+            var basketResponse = await _basketRepo.UpdateBasketAsync(custBasket);
             return Ok(basketResponse);
         }
 
