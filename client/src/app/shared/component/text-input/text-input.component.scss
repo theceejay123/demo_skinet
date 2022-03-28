@@ -1,0 +1,27 @@
+.form-floating {
+  margin-bottom: 0.5rem;
+}
+
+.form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-floating input[type='email'] {
+  margin-bottom: 0.5rem;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-floating input[type='password'] {
+  margin-bottom: 0.5rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.loader {
+  position: absolute;
+  width: auto;
+  top: 15px;
+  right: 10px;
+  margin-top: 5px;
+}
