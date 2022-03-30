@@ -35,6 +35,8 @@ export interface IOrder {
   deliveryMethod: IDeliveryMethod;
   orderItems: IOrderItem[];
   subTotal: number;
+  total: number;
+  shippingPrice: number;
   status: number;
   paymentIntentId: string;
 }

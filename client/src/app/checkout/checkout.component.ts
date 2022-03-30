@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { AccountService } from '../account/account.service';
+import { BasketService } from '../basket/basket.service';
+import { IBasketTotal } from '../shared/models/basket';
 
 @Component({
   selector: 'skinet-checkout',
@@ -8,11 +11,13 @@ import { AccountService } from '../account/account.service';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
+  basketTotal$: Observable<IBasketTotal>;
   checkoutForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private accountService: AccountService) { }
+  constructor(private fb: FormBuilder, private accountService: AccountService, private bService: BasketService) { }
 
   ngOnInit(): void {
+    this.basketTotal$ = this.bService.basketTotal$;
     this.initializeCheckoutForm();
     this.getAddressFormValues();
   }

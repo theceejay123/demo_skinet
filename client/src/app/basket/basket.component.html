@@ -11,12 +11,18 @@
               (decrement)="decrementItemQty($event)"
               (increment)="incrementItemQty($event)"
               (remove)="removeBasketItem($event)"
+              [items]="(basket$ | async).items"
             ></skinet-basket-summary>
           </div>
         </div>
         <div class="row">
           <div class="col-6 offset-6 d-grid gap-2">
-            <skinet-order-total></skinet-order-total>
+            <skinet-order-total
+              *ngIf="basketTotal$ | async"
+              [shippingPrice]="(basketTotal$ | async).amount"
+              [total]="(basketTotal$ | async).total"
+              [subTotal]="(basketTotal$ | async).subtotal"
+            ></skinet-order-total>
             <a routerLink="/checkout" class="btn btn-outline-primary py-2">Checkout</a>
           </div>
         </div>

@@ -3,6 +3,7 @@
     <i class="fa fa-check-circle fa-5x" style="color: green;"></i>
     <h2>Thank you. Your order is now confirmed</h2>
     <p class="mb-4">Your order is not shipped yet, but this is to be expected as we are NOT a real store</p>
-    <button class="btn btn-outline-success">View Order</button>
+    <button *ngIf="order" class="btn btn-outline-success" (click)="navigateToOrder(order.id)">View Order</button>
+    <button *ngIf="!order" class="btn btn-outline-success" (click)="navigateToOrders()">View All Orders</button>
   </div>
 </div>
