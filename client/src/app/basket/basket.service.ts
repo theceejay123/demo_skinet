@@ -24,13 +24,18 @@ export class BasketService {
 
   setShippingPrice(deliveryMethod: IDeliveryMethod) {
     this.shipping = deliveryMethod.price;
+    const basket = this.getCurrentBasketValue();
+    basket.deliveryMethodId = deliveryMethod.id;
+    basket.shippingPrice = deliveryMethod.price;
     this.calculateTotal();
+    this.setBasket(basket);
   }
 
   getBasket(id: string) {
     return this.http.get(this.baseUrl + 'basket?id=' + id).pipe(
       map((b: IBasket) => {
         this.basketSrc.next(b);
+        this.shipping = b.shippingPrice;
         this.calculateTotal();
       })
     );
@@ -102,6 +107,14 @@ export class BasketService {
       },
       (error) => console.log(error)
     );
+  }
+
+  createPaymentIntent() {
+    return this.http.post(this.baseUrl + 'payment/' + this.getCurrentBasketValue().id, {}).pipe(
+      map((basket: IBasket) => {
+        this.basketSrc.next(basket);
+      })
+    )
   }
 
   private calculateTotal() {

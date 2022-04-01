@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-8">
-      <skinet-stepper [linearModeSelected]="false" #skinetStepper\>
+      <skinet-stepper [linearModeSelected]="true" #skinetStepper>
         <cdk-step [label]="'Address'" [completed]="checkoutForm.get('addressForm').valid">
           <skinet-checkout-address [checkoutForm]="checkoutForm"></skinet-checkout-address>
         </cdk-step>
@@ -9,7 +9,7 @@
           <skinet-checkout-delivery [checkoutForm]="checkoutForm"></skinet-checkout-delivery>
         </cdk-step>
         <cdk-step [label]="'Review'">
-          <skinet-checkout-review></skinet-checkout-review>
+          <skinet-checkout-review [skinetStepper]="skinetStepper"></skinet-checkout-review>
         </cdk-step>
         <cdk-step [label]="'Payment'">
           <skinet-checkout-payment [checkoutForm]="checkoutForm"></skinet-checkout-payment>

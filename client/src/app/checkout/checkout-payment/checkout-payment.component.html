@@ -1,4 +1,31 @@
+<div class="mt-4" [formGroup]="checkoutForm">
+  <div class="row">
+    <div class="form-group col-12" formGroupName="paymentForm">
+      <skinet-text-input [label]="'Name On Card'" formControlName="nameOnCard"></skinet-text-input>
+    </div>
+    <div class="form-group col-6">
+      <div class="form-control py-3" #cardNumber></div>
+      <ng-container *ngIf="cardErrors">
+        <span class="text-danger">{{ cardErrors }}</span>
+      </ng-container>
+    </div>
+    <div class="form-group col-6">
+      <div class="form-control py-3" #cardExpiry></div>
+    </div>
+    <div class="form-group col-6">
+      <div class="form-control py-3" #cardCvc></div>
+    </div>
+  </div>
+</div>
+
 <div class="float-none d-flex justify-content-between flex-column flex-lg-row mb-5">
   <button class="btn btn-outline-primary" cdkStepperPrevious><i class="fa fa-angle-left"></i> Previous</button>
-  <button class="btn btn-outline-primary" (click)="submitOrder()">Submit Checkout <i class="fa fa-angle-right"></i></button>
+  <button
+    [disabled]="this.loading || !this.cardCvcValid || !this.cardExpiryValid || !this.cardNumberValid || this.checkoutForm.get('paymentForm').invalid"
+    class="btn btn-outline-primary"
+    (click)="submitOrder()"
+  >
+    Submit Checkout <i *ngIf="!loading" class="fa fa-angle-right"></i>
+    <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+  </button>
 </div>
